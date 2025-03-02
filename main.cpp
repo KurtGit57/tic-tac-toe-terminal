@@ -2,6 +2,7 @@
 #include <cstring>
 #include <stdlib.h>
 #include <chrono> 
+#include <unistd.h>
 #include "utilities.h"
 using namespace std;
 
@@ -13,7 +14,7 @@ struct playerScore {
   uint32_t turnCounter; 
   float timeCounter;
 };
-playerScore playerOne, playerTwo;
+
 
 
 void RenderBoard();
@@ -24,13 +25,23 @@ int CheckCoordinate(int plot);
 bool WinCondition(char BoardPiece); //This function doesn't work (what the hell was I thinking for the logic)
 bool conditionWin(char BoardPiece);
 void mainGameLoop();
+void fauxLoadingScreen();
 bool playAgain(); 
-
+playerScore playerOne, playerTwo;
 
 
 
 int main(){                 //main function
     
+    for(int i = 0; i <= 20; i++) {
+        
+        fauxLoadingScreen();
+        sleep(1.0);
+        
+    }
+    
+    system("clear");
+    //exampleBoardUsed();
     mainGameLoop();
 }
 
@@ -88,6 +99,23 @@ void mainGameLoop() {  //Took the code from the main function and put it in its 
 
 
 
+void fauxLoadingScreen() {
+    printf("           .'\   /`. \n");
+    printf("        .'.-.`-'.-.`.\n");
+    printf("    ..._:   .-. .-.   :_...\n");
+    printf("  .'    '-.(o ) (o ).-'    `.\n");
+    printf(" :  _    _ _`~(_)~`_ _    _  :\n");
+    printf(":  /:   ' .-=_   _=-. `   ;\  :\n");
+    printf(":   :|-.._  '     `  _..-|:   :\n");
+    printf(" :   `:| |`:-:-.-:-:'| |:'   :\n");
+    printf("`.   `.| | | | | | |.'   .'\n");
+    printf("   `.   `-:_| | |_:-'   .'\n");
+    printf("hehe  `-._   ````    _.-'\n");
+    printf("          ``-------''\n");
+    std::cout << std::endl;
+    
+}
+
 
 int CheckCoordinate(int Plot) {
     
@@ -98,6 +126,7 @@ int CheckCoordinate(int Plot) {
     
     return Plot;
 }
+
 
 
 bool WinCondition(char BoardPiece) {  
@@ -192,6 +221,7 @@ void divrCoordinate(char gamePiece, std::string turnMessage, playerScore* avgRec
 bool playAgain() {
     std::string answer;
     std::cout << "Do you want to play again(y/n)" << std::endl;
+    
     while(1) {   
         std::cin >> answer;
         if(answer == "y") {
@@ -202,6 +232,7 @@ bool playAgain() {
         }
         
     }
+    
     return true;
 }
 
