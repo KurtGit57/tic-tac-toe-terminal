@@ -2,6 +2,7 @@
 #include <cstring>
 #include <stdlib.h>
 #include <chrono> 
+#include <unistd.h>
 #include "utilities.h"
 using namespace std;
 
@@ -13,24 +14,34 @@ struct playerScore {
   uint32_t turnCounter; 
   float timeCounter;
 };
-playerScore playerOne, playerTwo;
+
 
 
 void RenderBoard();
 void P1Coordinate();     
 void P2Coordinate();
-void divrCoordinate(char gamePiece, std::string turnMessage, playerScore* avgRecordTime);
+void divrCoordinate(char gamePiece, std::string turnMessage, playerScore* getAvgTime);
 int CheckCoordinate(int plot);
 bool WinCondition(char BoardPiece); //This function doesn't work (what the hell was I thinking for the logic)
 bool conditionWin(char BoardPiece);
 void mainGameLoop();
+void fauxLoadingScreen();
 bool playAgain(); 
-
+playerScore playerOne, playerTwo;
 
 
 
 int main(){                 //main function
     
+    for(int i = 0; i <= 20; i++) {
+        
+        fauxLoadingScreen();
+        sleep(1.0);
+        
+    }
+    
+    system("clear");
+    //exampleBoardUsed();
     mainGameLoop();
 }
 
@@ -42,7 +53,7 @@ void mainGameLoop() {  //Took the code from the main function and put it in its 
     RenderBoard();
     while (1) {
         
-      //P L A Y E R  1  T U R N
+      //Player 1 goes
       divrCoordinate('X', "P L A Y E R  1  T U R N", &playerOne);
       RenderBoard();
       
@@ -55,7 +66,7 @@ void mainGameLoop() {  //Took the code from the main function and put it in its 
        playerOne.turnCounter++;
        
        
-      //P L A Y E R  2  T U R N
+      //Player 2 goes 
       divrCoordinate('O', "P L A Y E R  2  T U R N", &playerTwo);
       RenderBoard();
       
@@ -88,6 +99,11 @@ void mainGameLoop() {  //Took the code from the main function and put it in its 
 
 
 
+void fauxLoadingScreen() {
+    printf(":D hehe\n");
+    
+}
+
 
 int CheckCoordinate(int Plot) {
     
@@ -98,6 +114,7 @@ int CheckCoordinate(int Plot) {
     
     return Plot;
 }
+
 
 
 bool WinCondition(char BoardPiece) {  
@@ -151,7 +168,7 @@ bool conditionWin(char BoardPiece) {
   return false;
 }
 
-void divrCoordinate(char gamePiece, std::string turnMessage, playerScore* avgRecordTime) {
+void divrCoordinate(char gamePiece, std::string turnMessage, playerScore* getAvgTime) {
     
     int PLOT_Row, PLOT_Column;
     auto begin = chrono::high_resolution_clock::now();
@@ -192,6 +209,7 @@ void divrCoordinate(char gamePiece, std::string turnMessage, playerScore* avgRec
 bool playAgain() {
     std::string answer;
     std::cout << "Do you want to play again(y/n)" << std::endl;
+    
     while(1) {   
         std::cin >> answer;
         if(answer == "y") {
@@ -202,6 +220,7 @@ bool playAgain() {
         }
         
     }
+    
     return true;
 }
 
