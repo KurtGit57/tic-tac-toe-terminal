@@ -202,7 +202,7 @@ void divrCoordinate(char gamePiece, std::string turnMessage, playerScore* getAvg
     
     //Getting the time interval 
     auto timeInterval = chrono::duration_cast<chrono::milliseconds>(end - begin);
-    avgRecordTime->timeCounter += timeInterval.count();
+    getAvgTime->timeCounter += timeInterval.count();
 }
 
 
