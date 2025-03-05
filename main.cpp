@@ -25,7 +25,7 @@ int CheckCoordinate(int plot);
 bool WinCondition(char BoardPiece); //This function doesn't work (what the hell was I thinking for the logic)
 bool conditionWin(char BoardPiece);
 void mainGameLoop();
-void fauxLoadingScreen();
+void fakeLoadingScreen();
 bool playAgain(); 
 playerScore playerOne, playerTwo;
 
@@ -35,7 +35,7 @@ int main(){                 //main function
     
     for(int i = 0; i <= 20; i++) {
         
-        fauxLoadingScreen();
+        fakeLoadingScreen();
         sleep(1.0);
         
     }
@@ -99,7 +99,7 @@ void mainGameLoop() {  //Took the code from the main function and put it in its 
 
 
 
-void fauxLoadingScreen() {
+void fakeLoadingScreen() {
     printf(":D hehe\n");
     
 }
