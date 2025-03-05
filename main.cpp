@@ -92,8 +92,8 @@ void mainGameLoop() {  //Took the code from the main function and put it in its 
     }
     std::cout << "Thanks for Playing!" << std::endl;
     std::cout << "Scores: " << std::endl;
-    std::cout << "Player 1,   Wins: " << playerOne.wins << "  Losses: " << playerOne.losses << "  Avg Turn Time: " << getAverage(playerOne.timeCounter, playerOne.turnCounter) << "ms" << std::endl;
-    std::cout << "Player 2,   Wins: " << playerTwo.wins << "  Losses: " << playerTwo.losses << "  Avg Turn Time: " << getAverage(playerTwo.timeCounter, playerTwo.turnCounter) << "ms" <<std::endl;
+    std::cout << "Player 1,   Wins: " << playerOne.wins << "  Losses: " << playerOne.losses << "  Avg Turn Time: " << playerOne.timeCounter / playerOne.turnCounter << "ms" << std::endl;
+    std::cout << "Player 2,   Wins: " << playerTwo.wins << "  Losses: " << playerTwo.losses << "  Avg Turn Time: " << playerTwo.timeCounter / playerTwo.turnCounter << "ms" <<std::endl;
 }
 
 
